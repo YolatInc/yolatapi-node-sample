@@ -1,18 +1,16 @@
+import { ITransactionService } from "../Interfaces/ITransactionService";
 import { YolatSampleConfig } from "../Utils/Environment";
 import crypto from "crypto";
 
 export async function signRequest(
-  payload: any,
+  payload: ITransactionService,
   timestamp: any
 ): Promise<string> {
   const pemKey = convertPkcs1ToPem(
     YolatSampleConfig.yolat.api_private_key ?? ""
   );
 
-  const dataToSign = `${JSON.stringify(payload)}|${timestamp}|${
-    payload.transactionDetail.transactionReference
-  }`;
-  console.log("Data to sign:", dataToSign);
+  const dataToSign = `${payload.transactionDetail.walletCurrencyCode}|${payload.transactionDetail.receiveCurrencyCode}|${payload.transactionDetail.amount}|${timestamp}|${payload.transactionDetail.transactionReference}`;
   const signer = crypto.createSign("RSA-SHA256");
   signer.update(dataToSign);
   signer.end();

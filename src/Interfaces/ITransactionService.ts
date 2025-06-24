@@ -11,12 +11,13 @@ export interface ITransactionService {
     lastName: string;
   };
   transactionDetail: {
-    currencyCode: string;
+    walletCurrencyCode: string;
+    receiveCurrencyCode: string;
     accountNumber: string;
     accountName: string;
     bankCode: string;
     amount: number;
     transactionReference: string;
-    beneficiaryId?: number;
+    beneficiaryId: string;
   };
 }

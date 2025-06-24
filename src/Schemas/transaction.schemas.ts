@@ -6,13 +6,14 @@ export const payoutSchema = T.Object({
     lastName: T.String(),
   }),
   transactionDetail: T.Object({
-    currencyCode: T.String(),
+    walletCurrencyCode: T.String(),
+    receiveCurrencyCode: T.String(),
     accountNumber: T.String(),
     accountName: T.String(),
     bankCode: T.String(),
-    amount: T.String(),
+    amount: T.Number(),
     transactionReference: T.String(),
-    beneficiaryId: T.Optional(T.String()),
+    beneficiaryId: T.String(),
   }),
 });
 
