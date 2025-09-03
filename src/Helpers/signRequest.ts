@@ -10,7 +10,13 @@ export async function signRequest(
     YolatSampleConfig.yolat.api_private_key ?? ""
   );
 
-  const dataToSign = `${payload.transactionDetail.walletCurrencyCode}|${payload.transactionDetail.receiveCurrencyCode}|${payload.transactionDetail.amount}|${timestamp}|${payload.transactionDetail.transactionReference}`;
+  const dataToSign = `${
+    payload.transactionDetail.walletCurrencyCode ??
+    payload.transactionDetail.cryptoCurrencyCode
+  }|${payload.transactionDetail.receiveCurrencyCode}|${
+    payload.transactionDetail.amount
+  }|${timestamp}|${payload.transactionDetail.transactionReference}`;
+  console.log({ dataToSign });
   const signer = crypto.createSign("RSA-SHA256");
   signer.update(dataToSign);
   signer.end();

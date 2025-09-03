@@ -14,3 +14,27 @@ export const TransactionController = async (
     reply.status(StatusCodes.BAD_REQUEST).send(err);
   }
 };
+
+export const TransactionNoWalletController = async (
+  req: FastifyRequest<{ Body: ITransactionService }>,
+  reply: FastifyReply
+) => {
+  try {
+    const response = await TransactionService.payoutNoWallet(req.body);
+    reply.code(StatusCodes.CREATED).send(response);
+  } catch (err) {
+    reply.status(StatusCodes.BAD_REQUEST).send(err);
+  }
+};
+
+export const TransactionFromWalletController = async (
+  req: FastifyRequest<{ Body: ITransactionService }>,
+  reply: FastifyReply
+) => {
+  try {
+    const response = await TransactionService.payoutFromWallet(req.body);
+    reply.code(StatusCodes.CREATED).send(response);
+  } catch (err) {
+    reply.status(StatusCodes.BAD_REQUEST).send(err);
+  }
+};

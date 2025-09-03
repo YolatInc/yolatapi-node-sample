@@ -9,6 +9,7 @@ export interface ITransactionService {
   senderDetail: {
     firstName: string;
     lastName: string;
+    emailAddress: string;
   };
   transactionDetail: {
     walletCurrencyCode: string;
@@ -19,5 +20,6 @@ export interface ITransactionService {
     amount: number;
     transactionReference: string;
     beneficiaryId: string;
+    cryptoCurrencyCode: string;
   };
 }
